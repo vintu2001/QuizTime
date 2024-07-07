@@ -7,7 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame implements ActionListener {
-
+    JButton rules, back;
+    JTextField tfname;
     Login(){
         //setting frame
         getContentPane().setBackground(Color.WHITE);
@@ -32,21 +33,21 @@ public class Login extends JFrame implements ActionListener {
         add(name);
 
         //taking name input
-        JTextField tfname = new JTextField();
+        tfname = new JTextField();
         tfname.setBounds(735, 200, 300, 25);
         tfname.setFont(new Font("Times New Roman", Font.PLAIN, 16));
         add(tfname);
 
         //button
-        JButton btn = new JButton("Start");
-        btn.setBounds(755, 270, 120, 25);
-        btn.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        btn.setBackground(new Color(30, 144, 254));
-        btn.setForeground(Color.WHITE);
-        btn.addActionListener(this);
-        add(btn);
+        rules = new JButton("Start");
+        rules.setBounds(755, 270, 120, 30);
+        rules.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        rules.setBackground(new Color(30, 144, 254));
+        rules.setForeground(Color.WHITE);
+        rules.addActionListener(this);
+        add(rules);
 
-        JButton back = new JButton("Back");
+        back = new JButton("Back");
         back.setFont(new Font("Times New Roman", Font.BOLD, 14));
         back.setBounds(915, 270, 120, 30);
         back.setBackground(new Color(30, 144, 254));
@@ -59,17 +60,20 @@ public class Login extends JFrame implements ActionListener {
         setLocation(200,150);
         setVisible(true);
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource() == rules){
+            String name = tfname.getText();
+            setVisible(false);
+            new Rules(name);
+        }else if(e.getSource() == back){
+            setVisible(false);
+        }
+    }
+
     public static void main(String[] args) {
         new Login();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if(e.getActionCommand().equals("Start")){
-
-        }else if(e.getActionCommand().equals("Back")){
-            setVisible(false);
-        }
-    }
 }
