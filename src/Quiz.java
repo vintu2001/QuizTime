@@ -8,10 +8,10 @@ public class Quiz extends JFrame implements ActionListener {
 
     String questions[][] = new String[10][5];
     String answers[][] = new String[10][2];
-    String useranswers[][] = new String[10][1];
+    String userAnswers[][] = new String[10][1];
     JLabel qno, question;
     JRadioButton opt1, opt2, opt3, opt4;
-    ButtonGroup groupoptions;
+    ButtonGroup groupOptions;
     JButton next, submit, lifeline;
 
     public static int timer = 15;
@@ -136,14 +136,14 @@ public class Quiz extends JFrame implements ActionListener {
         opt4.setFont(new Font("Mongolian Baiti", Font.PLAIN, 24));
         add(opt4);
 
-        groupoptions = new ButtonGroup();
-        groupoptions.add(opt1);
-        groupoptions.add(opt2);
-        groupoptions.add(opt3);
-        groupoptions.add(opt4);
+        groupOptions = new ButtonGroup();
+        groupOptions.add(opt1);
+        groupOptions.add(opt2);
+        groupOptions.add(opt3);
+        groupOptions.add(opt4);
 
         next = new JButton("Next");
-        next.setBounds(875, 600, 150, 40);
+        next.setBounds(1100, 530, 150, 40);
         next.setFont(new Font("Mongolian Baiti", Font.PLAIN, 24));
         next.setBackground(new Color(30, 144, 254));
         next.setForeground(Color.WHITE);
@@ -151,7 +151,7 @@ public class Quiz extends JFrame implements ActionListener {
         add(next);
 
         lifeline = new JButton("50-50 Lifeline");
-        lifeline.setBounds(1100, 630, 200, 40);
+        lifeline.setBounds(1100, 590, 200, 40);
         lifeline.setFont(new Font("Tahoma", Font.PLAIN, 22));
         lifeline.setBackground(new Color(30, 144, 255));
         lifeline.setForeground(Color.WHITE);
@@ -159,7 +159,7 @@ public class Quiz extends JFrame implements ActionListener {
         add(lifeline);
 
         submit = new JButton("Submit");
-        submit.setBounds(875, 670, 150, 40);
+        submit.setBounds(1100, 650, 150, 40);
         submit.setFont(new Font("Mongolian Baiti", Font.PLAIN, 24));
         submit.setBackground(new Color(30, 144, 254));
         submit.setForeground(Color.WHITE);
@@ -188,7 +188,7 @@ public class Quiz extends JFrame implements ActionListener {
         opt4.setText(questions[count][4]);
         opt4.setActionCommand(questions[count][4]);
 
-        groupoptions.clearSelection();
+        groupOptions.clearSelection();
     }
 
     public void paint(Graphics g) {
@@ -228,14 +228,14 @@ public class Quiz extends JFrame implements ActionListener {
                 submit.setEnabled(true);
             }
             if (count == 9) { // submit button
-                if (groupoptions.getSelection() == null) {
-                    useranswers[count][0] = "";
+                if (groupOptions.getSelection() == null) {
+                    userAnswers[count][0] = "";
                 } else {
-                    useranswers[count][0] = groupoptions.getSelection().getActionCommand();
+                    userAnswers[count][0] = groupOptions.getSelection().getActionCommand();
                 }
 
-                for (int i = 0; i < useranswers.length; i++) {
-                    if (useranswers[i][0].equals(answers[i][1])) {
+                for (int i = 0; i < userAnswers.length; i++) {
+                    if (userAnswers[i][0].equals(answers[i][1])) {
                         score += 10;
                     } else {
                         score += 0;
@@ -244,10 +244,10 @@ public class Quiz extends JFrame implements ActionListener {
                 setVisible(false);
                 new Score(name, score);
             } else { // next button
-                if (groupoptions.getSelection() == null) {
-                    useranswers[count][0] = "";
+                if (groupOptions.getSelection() == null) {
+                    userAnswers[count][0] = "";
                 } else {
-                    useranswers[count][0] = groupoptions.getSelection().getActionCommand();
+                    userAnswers[count][0] = groupOptions.getSelection().getActionCommand();
                 }
                 count++; // 0 // 1
                 start(count);
@@ -267,10 +267,10 @@ public class Quiz extends JFrame implements ActionListener {
             opt4.setEnabled(true);
             ans_given = 1;
 
-            if(groupoptions.getSelection() == null){
-                useranswers[count][0] = "";
+            if(groupOptions.getSelection() == null){
+                userAnswers[count][0] = "";
             }else{
-                useranswers[count][0] = groupoptions.getSelection().getActionCommand();
+                userAnswers[count][0] = groupOptions.getSelection().getActionCommand();
             }
 
             if(count == 8){
@@ -291,14 +291,14 @@ public class Quiz extends JFrame implements ActionListener {
             lifeline.setEnabled(false);
         } else if(e.getSource() == submit){
             ans_given = 1;
-            if(groupoptions.getSelection() == null){
-                useranswers[count][0] = "";
+            if(groupOptions.getSelection() == null){
+                userAnswers[count][0] = "";
             }else{
-                useranswers[count][0] = groupoptions.getSelection().getActionCommand();
+                userAnswers[count][0] = groupOptions.getSelection().getActionCommand();
             }
 
-            for(int i = 0; i < useranswers.length; i++){
-                if(useranswers[i][0].equals(answers[i][1])){
+            for(int i = 0; i < userAnswers.length; i++){
+                if(userAnswers[i][0].equals(answers[i][1])){
                     score += 10;
                 }else{
                     score += 0;
